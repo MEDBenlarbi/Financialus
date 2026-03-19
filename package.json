@@ -1,0 +1,14 @@
+{
+  "name": "financialus",
+  "version": "1.0.0",
+  "description": "Personal Finance Manager",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "serve": "npm run serve --workspaces"
+  },
+  "author": "Mohaed Benarbi",
+  "license": "ISC"
+}
