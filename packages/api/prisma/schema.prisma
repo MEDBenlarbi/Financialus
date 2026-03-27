@@ -1,0 +1,71 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  fullName  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  homes    HomeMember[]
+  ledgers  Ledger[]
+}
+
+model Home {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  members  HomeMember[]
+  ledgers  Ledger[]
+}
+
+model HomeMember {
+  userId    String
+  homeId    String
+  role      String   @default("MEMBER")
+  createdAt DateTime @default(now())
+
+  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  home  Home  @relation(fields: [homeId], references: [id], onDelete: Cascade)
+
+  @@id([userId, homeId])
+}
+
+model Category {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  ledgers Ledger[]
+}
+
+model Ledger {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  amount      Float
+  date        DateTime
+  type        String
+  status      String   @default("APPROVED")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  userId     String
+  homeId     String
+  categoryId String
+
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  home     Home     @relation(fields: [homeId], references: [id], onDelete: Cascade)
+  category Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+}

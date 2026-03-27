@@ -10,5 +10,9 @@
     "serve": "npm run serve --workspaces"
   },
   "author": "Mohaed Benarbi",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^6.19.2",
+    "prisma": "^6.19.2"
+  }
 }
