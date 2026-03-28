@@ -1,3 +1,5 @@
+import { PrismaClient } from '@prisma/client';
+
 declare module 'fastify' {
   interface FastifyInstance {
     config: {
@@ -7,5 +9,6 @@ declare module 'fastify' {
       DATABASE_URL: string;
       JWT_SECRET: string;
     };
+    prisma: PrismaClient;
   }
 }
