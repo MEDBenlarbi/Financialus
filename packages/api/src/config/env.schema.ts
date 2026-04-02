@@ -1,6 +1,6 @@
 export const envSchema = {
   type: 'object',
-  required: ['JWT_SECRET'],
+  required: ['JWT_SECRET', 'GOOGLE_CLIENT_ID', 'GOOGLE_CLIENT_SECRET'],
   properties: {
     NODE_ENV: {
       type: 'string',
@@ -21,5 +21,16 @@ export const envSchema = {
     JWT_SECRET: {
       type: 'string',
     },
+    GOOGLE_CLIENT_ID: {
+      type: 'string',
+    },
+    GOOGLE_CLIENT_SECRET: {
+      type: 'string',
+    },
+    PROTOCOL: {
+      type: 'string',
+      default: 'http',
+    },
   },
-};
+}
+

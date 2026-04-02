@@ -1,2 +1,8 @@
 node_modules
 /generated/prisma
+packages/api/db/
+prisma/db/
+.env
+.env
+packages/api/db/
+prisma/db/
